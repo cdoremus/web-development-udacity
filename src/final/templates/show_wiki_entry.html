@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+	{% block content %}
+    	<h2>Craig's Wiki</h2>
+    	<h4>{{wiki.url}}</h4>
+    	<p>{{wiki.content}}</p>
+		<a href="/final/_edit/{{wiki.url}}">Edit</a><br>    	
+		<a href="/final/_history/{{wiki.url}}">History</a>    	
+	{% endblock %}
+		

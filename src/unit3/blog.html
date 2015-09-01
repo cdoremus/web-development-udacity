@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>CS 253 Homework 3 - Basic Blog</title>
+	</head>
+	<body>
+    	<h2>Craig's Blog</h2>
+		{% for entry in blog_entries %}
+	    	<h4><a href="/unit3/show_blog_entry?entry_id={{entry.key.id}}">{{entry.subject}}</h4>
+	    	<hr>
+		{% endfor %}
+		<a href="/unit3/blog/newpost">Create a new Blog entry</a>    	
+	</body>
+</html>

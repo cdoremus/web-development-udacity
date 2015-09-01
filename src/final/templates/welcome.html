@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+	{% block content %}
+{% autoescape on %}
+    	<h2>Welcome {{username}}</h2>
+    	
+    	<a href="/final">Wiki</a><br>
+    	<a href="/final/login">Login</a><br>
+    	<a href="/final/logout">Logout</a>
+    	
+{% endautoescape %}
+	{% endblock %}

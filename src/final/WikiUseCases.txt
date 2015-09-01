@@ -1,0 +1,119 @@
+Wiki Use Cases
+
+VIDEO NOTES:
+1. Homework 7.1
+NOTES:
+The home page of the wiki contains a welcome message.
+	- this page and any page can be edited (by a logged in user)
+If a URL does not exist, user will be redirected to a new page that allows you to edit a new wiki entry
+	- eg /wiki/_edit/newpage
+Clicking save will take you to the new URL (/wiki/newpage) that displays the new wiki entry
+		- this page has an edit link to allow editing of the newpage content
+A user logout clears the user cookie and leaves them on the read-only page without any edit link
+ - user can view any page when logged out, but they cannot edit
+	- submission of an edit form while logged out will fail.
+
+Logging it redirects the user to the wiki home with an edit link
+
+Signup link allows for the creation of a new user
+
+USE CASES:
+I. Show Wiki Page
+Preconditions: logged in user
+1. User browses to a URL
+2. The url is pulled out of request.path on the back end
+3. Data store is queried by url (order by mod_date desc)
+  a. If url exists (query data not null or empty) in the data store:
+		a. Select last record in query results (most recent record)
+		b. Display content in read-only wiki page containg
+			1. Wiki content
+			2. Edit link (if user logged in)
+			3. Histor link
+		c. The url is part of request.path
+  b. If page does not exist:
+	1. Redirect user to an edit page is shown with empty content field
+		a. Follows Edit Wiki Page use case
+	2. New url is last part of request.path
+	
+II. Edit Wiki Page
+Preconditions: logged in user
+1. User clicks on an edit link
+2. User sent to an edit page
+3. User enters text/html in the content textarea
+4. User clicks Save
+5. Content data passed to the back end in the request
+	a. url parsed from request.path
+6. Url and content data persisted to the data store
+	a. Add create_date and mod_date fields	
+7. User redirected to the read-only wiki page
+	
+
+2. Homework 7.2
+NOTES:
+Add a history link to each page
+Clicking on history 
+URL changes to _history/<url>
+History page contains all the previous versions of the page in a table
+	- table row is one version
+	- Row cells contain:
+		1. timestamp (mod_date)
+		2. first 100 chars of the wiki 
+		3. view/edit link at the end 
+			- clicking on one of these brings you the appropriate page
+	- versions are displayed in descending chronological order
+	- history page has HTYML of wiki escaped
+		- view and edit page has HTML unescaped
+
+USE CASES:
+
+I. Show Wiki History
+Preconditions: logged in user
+1. Pull url out of request.path
+2. Query data store by url
+	a. order by mod_date desc
+3. Display all records on the page in a table with edit and view link
+	a. table row contains:
+		1. Last modified timestamp
+		2. First 100 characters of the blog
+		3. View link containing wiki_id
+			a. Click sends to Show Wiki Page
+		4. Edit link containing wiki_id
+			a. Click sends to Edit Wiki Page
+	b. Page data is HTML escaped
+
+II. Edit Wiki History
+Preconditions: logged in user
+1. User clicks on edit link on history page
+2. Select wiki record using wiki_id
+3. Redirect user to display record as in Edit Wiki Page use case 
+
+			
+--------------------------------------------------------------------------------------------------------------------------	
+INSTRUCTOR COMMENTS:
+In order to be graded correctly for this homework, there are a few things to keep in mind. We'll be grading 
+your web app by signing in to your wiki, then trying to create and edit random pages. Therefore, any path we 
+choose should either:
+1. Go to that page if it has already been created.
+2. Go to an edit page if that page doesn't yet exist, assuming the user is signed in.
+
+The only static url we'll be requiring for this part is that the url for users to signup is at:
+
+signup_url = url + "/signup"
+
+Where 'url' is the url that you have entered in the text box above. In order to edit the page, we require 
+you to have a form with a single textfield, 'content', containing the content of the page to be edited.
+
+In order to get arbitrary paths working, you might want to have something like this for your routing table:
+
+PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
+app = webapp2.WSGIApplication([('/signup', Signup),
+                               ('/login', Login),
+                               ('/logout', Logout),
+                               ('/_edit' + PAGE_RE, EditPage),
+                               ('/_history' + PAGE_RE, HistoryPage),
+                               (PAGE_RE, WikiPage),
+                               ],
+                              debug=DEBUG)
+
+
+	

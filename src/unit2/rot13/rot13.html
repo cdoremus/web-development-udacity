@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>CS 253 Unit 2 Rot13 Encryption</title>
+	</head>
+	<body>
+    	<h2>Enter some text to ROT13:</h2>
+		<form action="/unit2/rot13" method="post">
+			<textarea name="text" style="height: 100px; width: 400px;">{{rot13_string|escape}}</textarea> 
+			<br>
+			<input type="submit" value="Encrypt">
+		</form>	
+	</body>
+</html>

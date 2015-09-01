@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+	{% block content %}
+    	<h4>Edit Wiki Entry</h4>
+    	<h5>URL: {{url}}</h5>
+    	<form action="/final/_edit/{{url}}" method="post">
+    		Wiki content:<br>
+    		<textarea name="content" rows="40" cols="60">{{content}}</textarea><br>
+    		{{content_error}}<br>
+    		<input type="submit">
+	{% endblock %}

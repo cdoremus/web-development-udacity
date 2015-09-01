@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+	{% block content %}
+    	<h2>Craig's Blog</h2>
+		{% for entry in blog_entries %}
+	    	<h4><a href="/unit6/{{entry.key.id}}">{{entry.subject}}</a></h4>
+	    	<p>{{entry.content}}</p>
+	    	<hr>
+		{% endfor %}
+		
+		<h4>Queried {{last_queried_all}} seconds ago</h4>		
+		<a href="/unit6/newpost">Create a new Blog entry</a>    	
+	{% endblock %}
+		

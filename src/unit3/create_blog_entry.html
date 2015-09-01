@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>CS 253 Homework 3 - Basic Blog</title>
+	</head>
+	<body>
+    	<h4>Create a New Blog Entry</h4>
+    	<form action="/unit3/save_blog_entry" method="post">
+    		Subject: <input type="text" name="subject" value="{{subject}}">{{subject_error}}<br>
+    		Blog:<br>
+    		<textarea name="content" rows="40" cols="60">{{content}}</textarea><br>
+    		{{content_error}}<br>
+    		<input type="submit">
+    	</form>
+	</body>
+</html>

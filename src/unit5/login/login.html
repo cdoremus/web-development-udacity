@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>CS 253 Unit 5 User Login</title>
+	</head>
+	<body>
+{% autoescape on %}
+    	<h2>Login</h2>
+		<form action="/unit5/login" method="post">
+			Username: <input type="text" name="username" value="{{username}}"> {{username_error}} 
+			<br>
+			Password: <input type="password" name="password" value="{{password}}"> {{password_error}} 
+			<br>
+			{{login_error}}<br>
+			<input type="submit">
+		</form>	
+{% endautoescape %}
+	</body>
+</html>

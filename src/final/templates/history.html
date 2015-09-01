@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+	{% block content %}
+	{% autoescape on %}
+		<h3>Wiki History for URL {{url}}</h3>
+		<table>
+		{% for entry in wiki_entries %}
+			<tr>
+			  <td>
+	    	  {{entry.last_modified}}
+			  </td>
+			  <td>
+	    	  {{entry.content}}
+			  </td>
+			  <td>
+	    	  <a href="/final/_edit/{{entry.url}}?wiki_id={{entry.entry_id}}">Edit</a>
+			  </td>
+			  <td>
+	    	  <a href="/final/{{entry.url}}?wiki_id={{entry.entry_id}}">View</a>
+			  </td>
+			</tr>
+		{% endfor %}
+		</table>
+		
+				
+	
+	{% endautoescape %}
+	{% endblock %}
+	

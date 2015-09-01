@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>CS 253 Unit 2 User Signup</title>
+	</head>
+	<body>
+{% autoescape on %}
+    	<h2>Signup</h2>
+		<form action="/unit2/usersignup" method="post">
+			Username: <input type="text" name="username" value="{{username}}"> {{username_error}} 
+			<br>
+			Password: <input type="password" name="password" value="{{password}}"> {{password_error}} 
+			<br>
+			Verify Password: <input type="password" name="verify" value="{{verify}}"> {{verify_error}} 
+			<br>
+			Email: <input type="text" name="email" value="{{email}}"> {{email_error}} 
+			<br>
+			<input type="submit">
+		</form>	
+{% endautoescape %}
+	</body>
+</html>
