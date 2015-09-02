@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>cdoremus-udacity-cs253</name>
+	<name>web-development-udacity</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,4 +14,10 @@
 	<natures>
 		<nature>org.python.pydev.pythonNature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>GOOGLE_APP_ENGINE</name>
+			<value>file:/home/craig/bin/google_appengine</value>
+		</variable>
+	</variableList>
 </projectDescription>
